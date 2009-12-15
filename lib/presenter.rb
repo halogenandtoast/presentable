@@ -9,6 +9,10 @@ class Presenter
     @resource.send(method, *args, &block)
   end
   
+  def id
+    @resource.id
+  end
+  
   def class
     @resource.class
   end
