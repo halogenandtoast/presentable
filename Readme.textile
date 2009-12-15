@@ -5,9 +5,11 @@ Making presenters easy and fun!
 h2. Setup for Rails
 
 h3. Update config/environment.rb
-config.load_paths += %W( #{RAILS_ROOT}/app/presenters )
+
+<pre>config.load_paths += %W( #{RAILS_ROOT}/app/presenters )</pre>
 
 h3. Create a presenter class
+
 <pre>class PostPresenter < Presenter
   def title
     "#{title} - <span class='date'>#{t('date.month_names')[month]} #{year}</span>"
@@ -15,8 +17,10 @@ h3. Create a presenter class
 end</pre>
 
 h3. Call present on your instance
+
 <pre>@post = Post.find(params[:id]).presenter</pre>
 
 h3. Use presenter methods in your view
+
 <pre><h2><%= @post.title %></h2>
 <p>@post.body</p></pre>
