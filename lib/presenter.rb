@@ -9,3 +9,14 @@ class Presenter
     @resource.send(method, *args, &block)
   end
 end
+
+class CollectionPresenter
+  include Enumerable
+  def initialize(nodes)
+    @nodes = nodes.map{ |n| n.presenter }
+  end
+  
+  def each
+    @nodes.each { |n| yield n }
+  end
+end
