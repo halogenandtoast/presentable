@@ -8,6 +8,14 @@ class Presenter
   def method_missing(method, *args, &block)
     @resource.send(method, *args, &block)
   end
+  
+  def class
+    @resource.class
+  end
+  
+  def to_param
+    @resource.to_param
+  end
 end
 
 class CollectionPresenter
