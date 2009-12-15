@@ -11,12 +11,12 @@ class Presenter
 end
 
 class CollectionPresenter
-  include Enumerable
+
   def initialize(nodes)
     @nodes = nodes.map{ |n| n.presenter }
   end
   
-  def each
-    @nodes.each { |n| yield n }
+  def method_missing(method, *attrs, &block)
+    @nodes.send(method, *attrs, &block)
   end
 end
