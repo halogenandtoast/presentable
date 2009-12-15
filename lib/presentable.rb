@@ -21,5 +21,23 @@ module Presentable
       end
     end
   end
+  
+  module Collection
+    module ClassExtension
+      def self.extended(klass)
+        klass.class_eval do
+          include Presentable::Collection::PresentableMethods::InstanceMethods
+        end
+      end
+    end
+
+    module PresentableMethods
+      module InstanceMethods
+        def presenter
+          CollectionPresenter.new(self)
+        end
+      end
+    end
+  end
    
 end
