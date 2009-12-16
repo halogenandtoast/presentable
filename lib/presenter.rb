@@ -1,12 +1,9 @@
 class Presenter
   instance_methods.each do |method|
-    undef_method(method)
+    undef_method(method) unless method =~ /^__/
   end
   
-  include ActionView::Helpers
   attr_accessor :context
-  
-  
   def initialize(context)
     @context = context
   end
@@ -20,7 +17,7 @@ end
 
 class CollectionPresenter
   instance_methods.each do |method|
-    undef_method(method)
+    undef_method(method) unless method =~ /^__/
   end
   
   def initialize(nodes)
