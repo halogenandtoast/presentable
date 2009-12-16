@@ -18,6 +18,7 @@ module Presentable
       else
         name.to_s
     end
+    @presenter_name = klass_name
     Object.module_eval("::#{klass_name}", __FILE__, __LINE__).new(self)
   end
   

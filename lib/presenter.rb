@@ -13,6 +13,18 @@ class Presenter
     @context.__send__(method, *args, &block)
   end
   
+  def self.presents_like(*presenters)
+    presenters.each do |other_presenter|
+      other_presenter.instance_methods.each do |method|
+        class_eval %[
+          def #{method}(*args, &block)
+            (@#{other_presenter.to_s.downcase} ||= #{other_presenter.to_s}.new(context)).__send__(:#{method}, *args, &block) 
+          end
+        ] unless method =~ /^__/ || [:context, :context=, :method_missing].include?(method.to_sym)
+      end
+    end
+  end
+  
 end
 
 class CollectionPresenter
