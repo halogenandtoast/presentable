@@ -12,7 +12,7 @@ h3. Create a presenter class
 
 <pre>class PostPresenter < Presenter
   def title
-    "#{title} - <span class='date'>#{t('date.month_names')[month]} #{year}</span>"
+    "#{original_title} - <span class='date'>#{created_at.strftime('%B %d')}</span>" # reference old values by prefixing them with original_
   end
 end</pre>
 
