@@ -1,11 +1,15 @@
 class Presenter
-  instance_methods.each do |method|
-    undef_method(method) unless method =~ /^__/
-  end
   
   attr_accessor :context
-  def initialize(context)
-    @context = context
+  def initialize(context = nil)
+    if context
+      @context = context 
+      class << self
+        Object.instance_methods.each do |method|
+          undef_method(method) unless method =~ /^__/ || method == 'method_missing'
+        end
+      end
+    end
   end
   
   def method_missing(method, *args, &block)
