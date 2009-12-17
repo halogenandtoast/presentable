@@ -1,6 +1,6 @@
 require 'presentable'
 
-ActiveRecord::Base.send(:extend, Presentable) if defined? ActiveRecord
+ActiveRecord::Base.send(:include, Presentable) if defined? ActiveRecord
 Presentable.send(:include, ActionView::Helpers) if defined? ActionView
 
-Array.send(:extend, Presentable::Collection)
+Array.send(:include, Presentable::Collection)
