@@ -4,6 +4,7 @@ require 'presenter'
 
 module Presentable
   attr_accessor :presenter_name, :presenter
+  
   def presenter_name
     @presenter_name ||= self.class.to_s + 'Presenter'
   end
@@ -28,3 +29,6 @@ module Presentable
     end
   end
 end
+
+Object.send(:include, Presentable)
+Array.send(:include, Presentable::Collection)

@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require 'test_helper'
-
 class PresenterTest < Test::Unit::TestCase
   def test_presenter
     post = Post.new.presenter
@@ -25,10 +23,8 @@ class PresenterTest < Test::Unit::TestCase
   
   
   def test_class
-    post = Post.new.presenter
+    post, rss = Post.new.presenter, RssPresenter.new
     assert_equal Post, post.class
-    rss = RssPresenter.new
-    puts rss.methods.sort.inspect
     assert_equal RssPresenter, rss.class
   end
 end
