@@ -37,10 +37,12 @@ class CollectionPresenter
   end
   
   def initialize(nodes)
+    @context = nodes
     @nodes = nodes.map{ |n| n.presenter }
   end
   
   def method_missing(method, *attrs, &block)
-    @nodes.__send__(method, *attrs, &block)
+    return @nodes.__send__(method, *attrs, &block) if @nodes.respond_to?(method)
+    @context.__send__(method, *attrs, &block)
   end
 end
