@@ -24,3 +24,4 @@ h3. Use presenter methods in your view
 
 <pre><h2><%= @post.title %></h2>
 <p>@post.body</p></pre>
+
